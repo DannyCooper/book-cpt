@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Books Custom Post Type
+ * Plugin Name: Book CPT
  * Plugin URI: https://wordpress.org/plugins/book-cpt
  * Description: A WordPress Custom Post Type for books. Supports Genre and Series.
  * Author: Danny Cooper

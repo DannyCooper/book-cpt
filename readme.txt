@@ -1,4 +1,4 @@
-=== Books Custom Post Type ===
+=== Books CPT ===
 Contributors: dannycooper
 Tags: books, author, genre, series
 Requires at least: 4.7
