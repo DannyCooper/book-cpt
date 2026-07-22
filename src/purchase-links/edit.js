@@ -53,7 +53,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 				{ 'book' !== postType ? (
 					<Placeholder
 						icon="cart"
-						label={ __( 'Purchase Links', 'book-cpt' ) }
+						label={ __( 'Book Purchase Links', 'book-cpt' ) }
 						instructions={ __(
 							'This block reads purchase links from the current book. Place it on a book template or single book page.',
 							'book-cpt'
@@ -94,7 +94,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 				) : (
 					<Placeholder
 						icon="cart"
-						label={ __( 'Purchase Links', 'book-cpt' ) }
+						label={ __( 'Book Purchase Links', 'book-cpt' ) }
 						instructions={ __(
 							'Add purchase links in the Book details meta box below the editor, then they will appear here as a retailer dropdown.',
 							'book-cpt'

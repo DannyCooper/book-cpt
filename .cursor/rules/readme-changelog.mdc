@@ -1,0 +1,17 @@
+---
+description: Bump readme.txt and plugin version whenever plugin code changes
+alwaysApply: true
+---
+
+# Readme and version bumps
+
+When making any user-facing change to this plugin:
+
+1. Update `readme.txt`:
+   - Bump `Stable tag` to match the new plugin version
+   - Add a changelog entry under `== Changelog ==` describing the change
+   - Update Description, Installation, or FAQ if behavior or UI changed
+2. Bump `Version` in `book-cpt.php` and `BOOK_CPT_VERSION` to match the stable tag
+3. Keep `Tested up to` accurate when WordPress compatibility is verified
+
+Do not skip readme updates as part of the same task that introduced the change.

@@ -3,11 +3,11 @@
 	"apiVersion": 3,
 	"name": "book-cpt/purchase-links",
 	"version": "1.0.0",
-	"title": "Purchase Links",
-	"category": "widgets",
+	"title": "Book Purchase Links",
+	"category": "book-cpt",
 	"icon": "cart",
-	"description": "Show where readers can buy this book using a single button and retailer dropdown.",
-	"keywords": [ "book", "purchase", "buy", "retailer" ],
+	"description": "A buy button with a dropdown of bookstore links for the current book.",
+	"keywords": [ "book", "books", "buy", "purchase", "retailer", "store", "shop", "links", "amazon" ],
 	"textdomain": "book-cpt",
 	"attributes": {
 		"buttonLabel": {
