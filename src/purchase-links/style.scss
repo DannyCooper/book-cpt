@@ -1,0 +1,174 @@
+.book-cpt-purchase-links {
+	--bpl-background: #fff;
+	--bpl-foreground: #09090b;
+	--bpl-muted: #71717a;
+	--bpl-border: #e4e4e7;
+	--bpl-accent: #f4f4f5;
+	--bpl-accent-hover: #e4e4e7;
+	--bpl-primary: #18181b;
+	--bpl-primary-hover: #27272a;
+	--bpl-radius: 0.375rem;
+	--bpl-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	.book-cpt-purchase-links {
+		--bpl-background: #09090b;
+		--bpl-foreground: #fafafa;
+		--bpl-muted: #a1a1aa;
+		--bpl-border: #27272a;
+		--bpl-accent: #27272a;
+		--bpl-accent-hover: #3f3f46;
+		--bpl-primary: #fafafa;
+		--bpl-primary-hover: #e4e4e7;
+		--bpl-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.35), 0 2px 4px -2px rgb(0 0 0 / 0.25);
+	}
+}
+
+.book-cpt-purchase-links__toggle {
+	appearance: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	border: 1px solid var(--bpl-primary);
+	border-radius: var(--bpl-radius);
+	cursor: pointer;
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1.25rem;
+	padding: 0.5rem 0.875rem;
+	background: var(--bpl-primary);
+	color: var(--bpl-background);
+	box-shadow: none;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+
+	&::after {
+		content: "";
+		width: 0.875rem;
+		height: 0.875rem;
+		background-color: currentColor;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+		opacity: 0.72;
+		transition: transform 0.15s ease;
+	}
+}
+
+.book-cpt-purchase-links.is-open .book-cpt-purchase-links__toggle::after {
+	transform: rotate(180deg);
+}
+
+.book-cpt-purchase-links__toggle:hover {
+	background: var(--bpl-primary-hover);
+	border-color: var(--bpl-primary-hover);
+}
+
+.book-cpt-purchase-links__toggle:focus-visible {
+	background: var(--bpl-primary-hover);
+	border-color: var(--bpl-primary-hover);
+	outline: 1px solid var(--bpl-border);
+	outline-offset: 2px;
+}
+
+.book-cpt-purchase-links.is-open {
+	z-index: 1000;
+}
+
+.book-cpt-purchase-links__menu {
+	position: absolute;
+	top: calc(100% + 0.375rem);
+	left: 0;
+	min-width: 18rem;
+	width: max-content;
+	max-width: min(24rem, calc(100vw - 2rem));
+	padding: 0.25rem;
+	border: 1px solid var(--bpl-border);
+	border-radius: calc(var(--bpl-radius) + 0.125rem);
+	background: var(--bpl-background);
+	color: var(--bpl-foreground);
+	box-shadow: var(--bpl-shadow);
+	z-index: 1000;
+}
+
+.book-cpt-purchase-links.is-open .book-cpt-purchase-links__menu,
+.book-cpt-purchase-links.is-editor-preview .book-cpt-purchase-links__menu {
+	display: block;
+}
+
+.book-cpt-purchase-links__menu[hidden] {
+	display: none;
+}
+
+.book-cpt-purchase-links__menu-label {
+	margin: 0;
+	padding: 0.375rem 0.5rem 0.25rem;
+	font-size: 0.75rem;
+	font-weight: 500;
+	line-height: 1rem;
+	color: var(--bpl-muted);
+}
+
+.book-cpt-purchase-links__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.book-cpt-purchase-links__list li + li {
+	margin-top: 0.125rem;
+}
+
+.book-cpt-purchase-links__link,
+.book-cpt-purchase-links__link:visited {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	padding: 0.375rem 0.5rem;
+	border-radius: calc(var(--bpl-radius) - 0.125rem);
+	background: transparent;
+	color: var(--bpl-foreground);
+	text-decoration: none;
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.25rem;
+	white-space: nowrap;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.book-cpt-purchase-links__link:hover,
+.book-cpt-purchase-links__link:focus-visible {
+	background: var(--bpl-accent);
+	color: var(--bpl-foreground);
+	outline: none;
+}
+
+.book-cpt-purchase-links__link-arrow {
+	flex-shrink: 0;
+	font-size: 0.875rem;
+	line-height: 1;
+	color: var(--bpl-muted);
+}
+
+.book-cpt-purchase-links__link:hover .book-cpt-purchase-links__link-arrow,
+.book-cpt-purchase-links__link:focus-visible .book-cpt-purchase-links__link-arrow {
+	color: var(--bpl-foreground);
+}
+
+.book-cpt-purchase-links.is-editor-preview .book-cpt-purchase-links__toggle {
+	cursor: default;
+}
+
+.book-cpt-purchase-links.is-editor-preview .book-cpt-purchase-links__toggle::after {
+	transform: rotate(180deg);
+}
+
+.book-cpt-purchase-links.is-editor-preview .book-cpt-purchase-links__link {
+	pointer-events: none;
+}

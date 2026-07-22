@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "book-cpt/purchase-links",
+	"version": "1.0.0",
+	"title": "Purchase Links",
+	"category": "widgets",
+	"icon": "cart",
+	"description": "Show where readers can buy this book using a single button and retailer dropdown.",
+	"keywords": [ "book", "purchase", "buy", "retailer" ],
+	"textdomain": "book-cpt",
+	"attributes": {
+		"buttonLabel": {
+			"type": "string",
+			"default": "Buy this book"
+		}
+	},
+	"usesContext": [ "postId", "postType" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

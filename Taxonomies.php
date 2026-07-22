@@ -109,6 +109,47 @@ class Taxonomies {
                 ),
             )
         );
+
+        /* Register the Book Author taxonomy. */
+        register_taxonomy(
+            'book_author',
+            array( 'book' ),
+            array(
+                'public'            => true,
+                'show_ui'           => true,
+                'show_in_nav_menus' => true,
+                'show_in_rest'      => true,
+                'show_tagcloud'     => true,
+                'show_admin_column' => true,
+                'hierarchical'      => false,
+                'query_var'         => 'book_author',
+
+                'rewrite'           => array(
+                    'slug'       => 'books/author',
+                    'with_front' => false,
+                    'ep_mask'    => EP_NONE,
+                ),
+
+                'labels'            => array(
+                    'name'                       => __( 'Book Authors', 'book-cpt' ),
+                    'singular_name'              => __( 'Book Author', 'book-cpt' ),
+                    'menu_name'                  => __( 'Authors', 'book-cpt' ),
+                    'name_admin_bar'             => __( 'Author', 'book-cpt' ),
+                    'search_items'               => __( 'Search Authors', 'book-cpt' ),
+                    'popular_items'              => __( 'Popular Authors', 'book-cpt' ),
+                    'all_items'                  => __( 'All Authors', 'book-cpt' ),
+                    'edit_item'                  => __( 'Edit Author', 'book-cpt' ),
+                    'view_item'                  => __( 'View Author', 'book-cpt' ),
+                    'update_item'                => __( 'Update Author', 'book-cpt' ),
+                    'add_new_item'               => __( 'Add New Author', 'book-cpt' ),
+                    'new_item_name'              => __( 'New Author Name', 'book-cpt' ),
+                    'separate_items_with_commas' => __( 'Separate authors with commas', 'book-cpt' ),
+                    'add_or_remove_items'        => __( 'Add or remove authors', 'book-cpt' ),
+                    'choose_from_most_used'      => __( 'Choose from the most used authors', 'book-cpt' ),
+                    'not_found'                  => __( 'No authors found.', 'book-cpt' ),
+                ),
+            )
+        );
     }
 }
 
