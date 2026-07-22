@@ -3,7 +3,7 @@ Contributors: dannycooper
 Tags: books, author, genre, series, purchase links, block
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 1.1.9
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,10 @@ Yes. Select the Book Purchase Links block and change **Button label** under **Bu
 Search for **book** or **buy** in the block inserter, or open the **Books** block category.
 
 == Changelog ==
+
+= 1.2.0 =
+* Restore books.php as the main plugin file (matches WordPress.org slug)
+* Keep book-cpt.php as a compatibility loader for recent installs
 
 = 1.1.9 =
 * Update plugin title to Books Custom Post Type (Genre, Authors and Series)
