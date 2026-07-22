@@ -5,7 +5,7 @@
  * Description: A WordPress Custom Post Type for books. Supports Authors, Genre and Series.
  * Author: Danny Cooper
  * Author URI: https://dannycooper.com
- * Version: 1.1.6
+ * Version: 1.1.7
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt
  *
@@ -14,7 +14,7 @@
 
 namespace BookCPT;
 
-define( 'BOOK_CPT_VERSION', '1.1.6' );
+define( 'BOOK_CPT_VERSION', '1.1.7' );
 define( 'BOOK_CPT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'BOOK_CPT_URL', plugin_dir_url( __FILE__ ) );
 

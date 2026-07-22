@@ -1,0 +1,16 @@
+/.wordpress-org
+/.git
+/.github
+/.cursor
+/node_modules
+/src
+/.gitignore
+/.distignore
+/.wp-env.json
+package.json
+package-lock.json
+book-cpt.zip
+phpcs.xml
+.stylelintrc
+assets/icon-128x128.png
+assets/icon-256x256.png
