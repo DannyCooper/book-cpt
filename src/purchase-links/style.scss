@@ -1,3 +1,12 @@
+// Themes without a universal reset leave these as content-box, which makes
+// padded, width:100% rows render wider than the menu that contains them.
+.book-cpt-purchase-links,
+.book-cpt-purchase-links *,
+.book-cpt-purchase-links *::before,
+.book-cpt-purchase-links *::after {
+	box-sizing: border-box;
+}
+
 .book-cpt-purchase-links {
 	--bpl-background: #fff;
 	--bpl-foreground: #09090b;
@@ -125,28 +134,41 @@
 }
 
 .book-cpt-purchase-links__link,
-.book-cpt-purchase-links__link:visited {
+.book-cpt-purchase-links__link:visited,
+.book-cpt-purchase-links__link--checkout {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 0.75rem;
+	width: 100%;
 	padding: 0.375rem 0.5rem;
+	border: 0;
 	border-radius: calc(var(--bpl-radius) - 0.125rem);
 	background: transparent;
 	color: var(--bpl-foreground);
 	text-decoration: none;
+	font: inherit;
 	font-size: 0.875rem;
 	font-weight: 400;
 	line-height: 1.25rem;
+	text-align: left;
 	white-space: nowrap;
+	cursor: pointer;
 	transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .book-cpt-purchase-links__link:hover,
-.book-cpt-purchase-links__link:focus-visible {
+.book-cpt-purchase-links__link:focus-visible,
+.book-cpt-purchase-links__link--checkout:hover,
+.book-cpt-purchase-links__link--checkout:focus-visible {
 	background: var(--bpl-accent);
 	color: var(--bpl-foreground);
 	outline: none;
+}
+
+.book-cpt-purchase-links__link--checkout:disabled {
+	opacity: 0.65;
+	cursor: wait;
 }
 
 .book-cpt-purchase-links__link-arrow {
@@ -171,4 +193,109 @@
 
 .book-cpt-purchase-links.is-editor-preview .book-cpt-purchase-links__link {
 	pointer-events: none;
+}
+
+.book-cpt-purchase-links__sdd-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: grid;
+	place-items: center;
+	padding: 1rem;
+}
+
+.book-cpt-purchase-links__sdd-overlay[hidden] {
+	display: none;
+}
+
+.book-cpt-purchase-links__sdd-backdrop {
+	position: absolute;
+	inset: 0;
+	border: 0;
+	background: rgb(0 0 0 / 0.45);
+	cursor: pointer;
+}
+
+.book-cpt-purchase-links__sdd-dialog {
+	position: relative;
+	width: min(100%, 24rem);
+	padding: 1.25rem;
+	border: 1px solid var(--bpl-border);
+	border-radius: calc(var(--bpl-radius) + 0.125rem);
+	background: var(--bpl-background);
+	box-shadow: var(--bpl-shadow);
+}
+
+.book-cpt-purchase-links__sdd-close {
+	position: absolute;
+	top: 0.75rem;
+	right: 0.75rem;
+	border: 0;
+	background: transparent;
+	color: var(--bpl-muted);
+	font-size: 1.25rem;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.book-cpt-purchase-links__sdd-title {
+	margin: 0 0 0.5rem;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.4;
+	color: var(--bpl-foreground);
+}
+
+.book-cpt-purchase-links__sdd-description {
+	margin: 0 0 1rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: var(--bpl-muted);
+}
+
+.book-cpt-purchase-links__sdd-email,
+.book-cpt-purchase-links__sdd-submit {
+	display: block;
+	width: 100%;
+}
+
+.book-cpt-purchase-links__sdd-email {
+	margin-bottom: 0.75rem;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--bpl-border);
+	border-radius: var(--bpl-radius);
+	background: var(--bpl-background);
+	color: var(--bpl-foreground);
+	font: inherit;
+}
+
+.book-cpt-purchase-links__sdd-submit {
+	border: 1px solid var(--bpl-primary);
+	border-radius: var(--bpl-radius);
+	padding: 0.5rem 0.875rem;
+	background: var(--bpl-primary);
+	color: var(--bpl-background);
+	font: inherit;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.book-cpt-purchase-links__sdd-submit:disabled {
+	opacity: 0.65;
+	cursor: wait;
+}
+
+.book-cpt-purchase-links__sdd-error {
+	margin: 0.75rem 0 0;
+	font-size: 0.8125rem;
+	line-height: 1.4;
+	color: #b91c1c;
+}
+
+.book-cpt-purchase-links__sdd-error[hidden] {
+	display: none;
+}
+
+body.book-cpt-sdd-modal-open {
+	overflow: hidden;
 }

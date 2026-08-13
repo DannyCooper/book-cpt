@@ -28,7 +28,27 @@ export default function Edit( { attributes, setAttributes, context } ) {
 	);
 
 	const validLinks = Array.isArray( purchaseLinks )
-		? purchaseLinks.filter( ( link ) => link?.url )
+		? purchaseLinks
+				.filter(
+					( link ) =>
+						link?.url ||
+						( link?.retailer === 'simple-digital-download' &&
+							link?.download_id )
+				)
+				.sort( ( a, b ) => {
+					const aIsBuyDirect =
+						a?.retailer === 'simple-digital-download' &&
+						a?.download_id;
+					const bIsBuyDirect =
+						b?.retailer === 'simple-digital-download' &&
+						b?.download_id;
+
+					if ( aIsBuyDirect === bIsBuyDirect ) {
+						return 0;
+					}
+
+					return aIsBuyDirect ? -1 : 1;
+				} )
 		: [];
 
 	return (
@@ -74,7 +94,12 @@ export default function Edit( { attributes, setAttributes, context } ) {
 							</p>
 							<ul className="book-cpt-purchase-links__list">
 								{ validLinks.map( ( link ) => (
-									<li key={ `${ link.retailer }-${ link.url }` }>
+									<li
+										key={
+											link.url ||
+											`${ link.retailer }-${ link.download_id }`
+										}
+									>
 										<span className="book-cpt-purchase-links__link">
 											<span className="book-cpt-purchase-links__link-label">
 												{ link.label }

@@ -66,7 +66,7 @@ class Meta {
 		<div class="book-cpt-book-details">
 			<div class="book-cpt-book-details__section">
 				<label class="book-cpt-book-details__label" for="book_order">
-					<? esc_html_e( 'Series order', 'book-cpt' ); ?>
+					<?php esc_html_e( 'Series order', 'book-cpt' ); ?>
 				</label>
 				<input
 					type="number"
@@ -78,7 +78,7 @@ class Meta {
 					step="1"
 				/>
 				<p class="description">
-					<? esc_html_e( 'The order of this book within its series.', 'book-cpt' ); ?>
+					<?php esc_html_e( 'The order of this book within its series.', 'book-cpt' ); ?>
 				</p>
 			</div>
 			<?php PurchaseLinks::render_meta_box_fields( $post->ID ); ?>

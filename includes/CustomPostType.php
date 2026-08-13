@@ -59,7 +59,7 @@ class CustomPostType {
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'menu_position'       => 5,
-			'menu_icon'           => BOOK_CPT_URL . 'assets/icon-128x128.png',
+			'menu_icon'           => 'dashicons-book',
 			'show_in_admin_bar'   => true,
 			'show_in_nav_menus'   => true,
 			'can_export'          => true,

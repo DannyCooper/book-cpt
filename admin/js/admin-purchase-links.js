@@ -32,9 +32,23 @@
 			)
 			.join( '' );
 
+	const getDownloadOptions = () => {
+		const options = Object.entries( config.downloads || {} )
+			.map(
+				( [ id, label ] ) =>
+					`<option value="${ id }">${ label }</option>`
+			)
+			.join( '' );
+
+		return `<option value="">${ config.selectDownload }</option>${ options }`;
+	};
+
+	const getDownloadTitle = ( id ) =>
+		( config.downloadTitles || {} )[ id ] || '';
+
 	const syncCustomLabelState = () => {
 		const hasCustom = !! container.querySelector(
-			'.book-cpt-purchase-links-meta__row.has-custom-label'
+			'.book-cpt-purchase-links-meta__row.has-custom-label, .book-cpt-purchase-links-meta__row.has-sdd-download'
 		);
 		container.classList.toggle( 'has-custom-label', hasCustom );
 		if ( tableHead ) {
@@ -56,6 +70,12 @@
 				<label class="screen-reader-text">${ config.labelLabel }</label>
 				<input type="text" class="book-cpt-purchase-links-meta__label-input" name="book_purchase_links[${ index }][label]" value="" placeholder="${ config.labelLabel }" />
 			</div>
+			<div class="book-cpt-purchase-links-meta__field book-cpt-purchase-links-meta__field--download is-hidden">
+				<label class="screen-reader-text">${ config.downloadLabel }</label>
+				<select class="book-cpt-purchase-links-meta__download" name="book_purchase_links[${ index }][download_id]">
+					${ getDownloadOptions() }
+				</select>
+			</div>
 			<div class="book-cpt-purchase-links-meta__field book-cpt-purchase-links-meta__field--url">
 				<label class="screen-reader-text">${ config.urlLabel }</label>
 				<input type="url" class="large-text book-cpt-purchase-links-meta__url" name="book_purchase_links[${ index }][url]" value="" placeholder="https://" />
@@ -65,6 +85,37 @@
 			</div>
 		`;
 		return row;
+	};
+
+	/**
+	 * Fills a download row's label from the selected download's title, unless
+	 * the author has typed a label of their own.
+	 */
+	const syncDownloadLabel = ( row ) => {
+		const downloadSelect = row.querySelector(
+			'.book-cpt-purchase-links-meta__download'
+		);
+		const labelInput = row.querySelector(
+			'.book-cpt-purchase-links-meta__label-input'
+		);
+
+		if ( ! downloadSelect || ! labelInput ) {
+			return;
+		}
+
+		const current = labelInput.value.trim();
+		const isAuthored =
+			current !== '' &&
+			current !== config.sddDefaultLabel &&
+			current !== row.dataset.autoLabel;
+
+		if ( isAuthored ) {
+			return;
+		}
+
+		const title = getDownloadTitle( downloadSelect.value );
+		labelInput.value = title;
+		row.dataset.autoLabel = title;
 	};
 
 	const syncLabelField = ( row ) => {
@@ -77,6 +128,36 @@
 		const labelInput = row.querySelector(
 			'.book-cpt-purchase-links-meta__label-input'
 		);
+		const urlWrap = row.querySelector(
+			'.book-cpt-purchase-links-meta__field--url'
+		);
+		const downloadWrap = row.querySelector(
+			'.book-cpt-purchase-links-meta__field--download'
+		);
+		const urlInput = row.querySelector(
+			'.book-cpt-purchase-links-meta__url'
+		);
+
+		row.classList.remove( 'has-custom-label', 'has-sdd-download' );
+
+		if ( retailer.value === config.sddSlug ) {
+			labelWrap.classList.remove( 'is-hidden' );
+			urlWrap.classList.add( 'is-hidden' );
+			downloadWrap.classList.remove( 'is-hidden' );
+			row.classList.add( 'has-sdd-download' );
+			labelInput.placeholder = config.sddDefaultLabel;
+			syncDownloadLabel( row );
+			if ( urlInput ) {
+				urlInput.value = '';
+			}
+			syncCustomLabelState();
+			return;
+		}
+
+		labelInput.placeholder = config.labelLabel;
+
+		downloadWrap.classList.add( 'is-hidden' );
+		urlWrap.classList.remove( 'is-hidden' );
 
 		if ( retailer.value === config.customSlug ) {
 			labelWrap.classList.remove( 'is-hidden' );
@@ -86,20 +167,31 @@
 		}
 
 		labelWrap.classList.add( 'is-hidden' );
-		row.classList.remove( 'has-custom-label' );
 		labelInput.value = config.retailers[ retailer.value ] || '';
+		// Remember it as auto-filled so switching to a download can replace it.
+		row.dataset.autoLabel = labelInput.value;
 		syncCustomLabelState();
 	};
 
 	rowsContainer.addEventListener( 'change', ( event ) => {
 		const target = event.target;
-		if ( ! target.classList.contains(
-			'book-cpt-purchase-links-meta__retailer'
-		) ) {
+		const row = target.closest( '.book-cpt-purchase-links-meta__row' );
+		if ( ! row ) {
 			return;
 		}
 
-		syncLabelField( target.closest( '.book-cpt-purchase-links-meta__row' ) );
+		if ( target.classList.contains(
+			'book-cpt-purchase-links-meta__retailer'
+		) ) {
+			syncLabelField( row );
+			return;
+		}
+
+		if ( target.classList.contains(
+			'book-cpt-purchase-links-meta__download'
+		) ) {
+			syncDownloadLabel( row );
+		}
 	} );
 
 	rowsContainer.addEventListener( 'click', ( event ) => {
@@ -116,7 +208,16 @@
 		);
 		if ( rows.length <= 1 ) {
 			const row = target.closest( '.book-cpt-purchase-links-meta__row' );
-			row.querySelector( 'input[type="url"]' ).value = '';
+			const urlInput = row.querySelector( 'input[type="url"]' );
+			const downloadSelect = row.querySelector(
+				'.book-cpt-purchase-links-meta__download'
+			);
+			if ( urlInput ) {
+				urlInput.value = '';
+			}
+			if ( downloadSelect ) {
+				downloadSelect.value = '';
+			}
 			return;
 		}
 

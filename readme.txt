@@ -3,7 +3,7 @@ Contributors: dannycooper
 Tags: books, author, genre, series, purchase links, block
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 1.2.2
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,9 @@ Find the block by searching **book** or **buy**, or browse the **Books** block c
 
 Customize the button text via **Button label** in the block settings sidebar when the block is selected.
 
-Preset retailers: Amazon, Apple Books, Barnes & Noble, Kobo, Google Play, and Other (custom label).
+Preset retailers: Amazon, Apple Books, Barnes & Noble, Kobo, Google Play, Simple Digital Download (when that plugin is active), and Other (custom label).
+
+When Simple Digital Downloads is installed, choose **Simple Digital Download** as a retailer and pick a download. The purchase dropdown shows it as **Buy Direct** and sends buyers straight to Stripe checkout (or collects email for free downloads).
 
 == Installation ==
 
@@ -56,6 +58,26 @@ Yes. Select the Book Purchase Links block and change **Button label** under **Bu
 Search for **book** or **buy** in the block inserter, or open the **Books** block category.
 
 == Changelog ==
+
+= 1.2.7 =
+* Allow a custom label per Simple Digital Download purchase link, defaulting to the download title so multiple downloads are no longer all labelled Buy Direct
+* Distinguish existing Buy Direct links that share a label by appending the download title
+* Fix purchase dropdown rows rendering wider than the dropdown on themes without a box-sizing reset
+
+= 1.2.6 =
+* Use the WordPress dashicons-book icon for the Books admin menu
+
+= 1.2.5 =
+* Fix Books admin menu icon showing a white background box
+
+= 1.2.4 =
+* Show Buy Direct purchase links first in the retailer dropdown
+
+= 1.2.3 =
+* Add Simple Digital Downloads integration with direct checkout via Buy Direct purchase links
+* Reorganize plugin files into includes/ and admin/ (books.php remains the main plugin file)
+* Remove unused book-cpt.php compatibility loader
+* Fix admin menu icon displaying at full size
 
 = 1.2.2 =
 * Enable revision support for books

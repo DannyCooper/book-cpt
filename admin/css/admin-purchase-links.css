@@ -38,6 +38,7 @@
 }
 
 .book-cpt-purchase-links-meta__row.has-custom-label,
+.book-cpt-purchase-links-meta__row.has-sdd-download,
 .book-cpt-purchase-links-meta__table-head.has-custom-label {
 	grid-template-columns: 11rem 11rem minmax(0, 1fr) 5rem;
 }
@@ -75,12 +76,15 @@
 
 .book-cpt-purchase-links-meta__field--retailer select,
 .book-cpt-purchase-links-meta__field--label input,
-.book-cpt-purchase-links-meta__field--url input {
+.book-cpt-purchase-links-meta__field--url input,
+.book-cpt-purchase-links-meta__field--download select {
 	width: 100%;
 	max-width: none;
 }
 
-.book-cpt-purchase-links-meta__field--label.is-hidden {
+.book-cpt-purchase-links-meta__field--label.is-hidden,
+.book-cpt-purchase-links-meta__field--download.is-hidden,
+.book-cpt-purchase-links-meta__field--url.is-hidden {
 	display: none;
 }
 
@@ -103,7 +107,8 @@
 	}
 
 	.book-cpt-purchase-links-meta__row,
-	.book-cpt-purchase-links-meta__row.has-custom-label {
+	.book-cpt-purchase-links-meta__row.has-custom-label,
+	.book-cpt-purchase-links-meta__row.has-sdd-download {
 		grid-template-columns: 1fr;
 	}
 

@@ -13,14 +13,21 @@ class Retailers {
 	 * @return array<string, string>
 	 */
 	public static function get_all() {
-		return [
+		$retailers = [
 			'amazon'       => __( 'Amazon', 'book-cpt' ),
 			'apple-books'  => __( 'Apple Books', 'book-cpt' ),
 			'barnes-noble' => __( 'Barnes & Noble', 'book-cpt' ),
 			'kobo'         => __( 'Kobo', 'book-cpt' ),
 			'google-play'  => __( 'Google Play', 'book-cpt' ),
-			'custom'       => __( 'Other', 'book-cpt' ),
 		];
+
+		if ( SimpleDigitalDownloads::is_available() ) {
+			$retailers['simple-digital-download'] = __( 'Simple Digital Download', 'book-cpt' );
+		}
+
+		$retailers['custom'] = __( 'Other', 'book-cpt' );
+
+		return $retailers;
 	}
 
 	/**
