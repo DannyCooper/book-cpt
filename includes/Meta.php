@@ -27,7 +27,7 @@ class Meta {
 				'type'              => 'integer',
 				'description'       => 'The order of the book in the series.',
 				'single'            => true,
-				'show_in_rest'      => false,
+				'show_in_rest'      => true,
 				'sanitize_callback' => 'absint',
 				'auth_callback'     => function ( $allowed, $meta_key, $post_id ) {
 					return current_user_can( 'edit_post', $post_id );

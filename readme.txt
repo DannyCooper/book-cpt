@@ -2,8 +2,8 @@
 Contributors: dannycooper
 Tags: books, author, genre, series, purchase links, block
 Requires at least: 6.0
-Tested up to: 7.0
-Stable tag: 1.2.7
+Tested up to: 7.1
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,10 @@ Yes. Select the Book Purchase Links block and change **Button label** under **Bu
 Search for **book** or **buy** in the block inserter, or open the **Books** block category.
 
 == Changelog ==
+
+= 1.2.8 =
+
+* Add book_order to show in REST
 
 = 1.2.7 =
 * Allow a custom label per Simple Digital Download purchase link, defaulting to the download title so multiple downloads are no longer all labelled Buy Direct
