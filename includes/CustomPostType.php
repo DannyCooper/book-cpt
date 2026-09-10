@@ -53,7 +53,7 @@ class CustomPostType {
 			'label'               => __( 'Book', 'book-cpt' ),
 			'description'         => __( 'Post Type Description', 'book-cpt' ),
 			'labels'              => $labels,
-			'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions' ),
+			'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'revisions', 'custom-fields' ),
 			'hierarchical'        => false,
 			'public'              => true,
 			'show_ui'             => true,
